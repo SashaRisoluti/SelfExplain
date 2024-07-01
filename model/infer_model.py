@@ -3,7 +3,7 @@ from operator import itemgetter
 
 import torch
 import numpy as np
-from pytorch_lightning import Trainer
+from lightning import Trainer
 from tqdm import tqdm
 import pandas as pd
 import resource
