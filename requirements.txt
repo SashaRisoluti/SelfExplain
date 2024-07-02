@@ -32,7 +32,7 @@ pandas
 # SelfExplain/model/qa_model.py: 5
 # SelfExplain/model/run.py: 2,5
 # SelfExplain/src/data/data_reader.py: 5
-pytorch_lightning == 1.1.2
+pytorch_lightning == 1.7.7
 
 # SelfExplain/src/third_party_utils/allennlp_cached_filepath.py: 9
 requests == 2.23.0
