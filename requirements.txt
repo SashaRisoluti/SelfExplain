@@ -56,7 +56,7 @@ torch == 1.11.0
 # SelfExplain/model/infer_model.py: 6
 # SelfExplain/src/data/data_reader.py: 11
 # SelfExplain/src/third_party_utils/allennlp_cached_filepath.py: 10
-tqdm == 4.48.0
+tqdm == 4.57.0
 
 # SelfExplain/ipynb/.ipynb_checkpoints/SST2 Test-checkpoint.ipynb: 47
 # SelfExplain/ipynb/SST2 Test.ipynb: 47
