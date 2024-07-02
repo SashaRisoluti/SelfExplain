@@ -69,4 +69,3 @@ tqdm == 4.48.0
 # SelfExplain/preprocessing/constituency_parse.py: 6
 # SelfExplain/src/data/data_reader.py: 10
 transformers
-lightning
