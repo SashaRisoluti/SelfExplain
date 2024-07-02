@@ -21,7 +21,7 @@ overrides == 3.1.0
 # SelfExplain/model/data_reader.py: 9
 # SelfExplain/model/infer_model.py: 7
 # SelfExplain/src/data/data_reader.py: 9
-pandas == 1.0.3
+pandas
 
 # SelfExplain/ipynb/.ipynb_checkpoints/SST2 Test-checkpoint.ipynb: 4,7
 # SelfExplain/ipynb/SST2 Test.ipynb: 4,7
