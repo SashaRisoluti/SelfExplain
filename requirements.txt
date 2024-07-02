@@ -68,4 +68,5 @@ tqdm == 4.48.0
 # SelfExplain/preprocessing/build_concept_store.py: 6,7
 # SelfExplain/preprocessing/constituency_parse.py: 6
 # SelfExplain/src/data/data_reader.py: 10
-transformers == 4.3.3
+transformers
+lightning
