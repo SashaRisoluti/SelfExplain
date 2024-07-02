@@ -49,7 +49,7 @@ requests == 2.23.0
 # SelfExplain/model/qa_model.py: 3,4,6
 # SelfExplain/preprocessing/build_concept_store.py: 5
 # SelfExplain/src/data/data_reader.py: 6,7,8
-torch == 1.6.0
+torch == 1.11.0
 
 # SelfExplain/model/data.py: 11
 # SelfExplain/model/data_reader.py: 11
