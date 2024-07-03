@@ -42,7 +42,6 @@ parser.add_argument("--gamma", default=0.01, type=float, help="Gamma parameter")
 parser.add_argument("--lamda", default=0.01, type=float, help="Lamda Parameter")
 parser.add_argument("--topk", default=100, type=int,help="Topk GIL concepts")
 
-parser = LightningDataModule.add_argparse_args(parser)
 parser = SEXLNet.add_model_specific_args(parser)
 
 args = parser.parse_args()
