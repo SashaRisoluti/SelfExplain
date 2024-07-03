@@ -24,7 +24,6 @@ class SEXLNet(LightningModule):
 
             config = AutoConfig.from_pretrained(self.hparams.model_name)
             self.model = AutoModel.from_pretrained(self.hparams.model_name)
-            print(f"DIMENSIONE DEL MODELLO: {config.d_model}")
 
         else:
             config = RobertaConfig()
@@ -35,6 +34,7 @@ class SEXLNet(LightningModule):
             config.dropout = 0.2
 
         self.pooler = SequenceSummary(config)
+        print(f"questo è il numero di classi: {self.hparams.num_classes}")
 
         self.classifier = nn.Linear(config.d_model, self.hparams.num_classes)
 
