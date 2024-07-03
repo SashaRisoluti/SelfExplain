@@ -1,6 +1,6 @@
 import lightning as pl
-from pl.pytorch.callbacks import ModelCheckpoint, LearningRateMonitor
-from pl.pytorch.core import LightningDataModule
+from lightning.pytorch.callbacks import ModelCheckpoint, LearningRateMonitor
+from lightning.pytorch.core import LightningDataModule
 import random
 import numpy as np
 import logging
