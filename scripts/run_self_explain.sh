@@ -6,7 +6,7 @@ python model/run.py \
     --clip_grad 1.0 \
     --dataset_basedir data/XLNet-SUBJ \
     --concept_store data/XLNet-SUBJ/concept_store.pt \
-    --model_name roberta-base \
+    --model_name xlnet-base-cased \
     --gamma 0.1 \
     --lamda 0.5 \
     --topk 5 \
