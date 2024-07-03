@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 
 import torch
 import torch.nn as nn
-from pytorch_lightning.core.lightning import LightningModule
+from lightning.pytorch.core import LightningModule
 from torch.optim import AdamW
 from transformers import AutoModel, AutoConfig, RobertaConfig, RobertaModel
 from transformers.modeling_utils import SequenceSummary
