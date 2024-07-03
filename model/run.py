@@ -27,7 +27,7 @@ resource.setrlimit(resource.RLIMIT_NOFILE, (4096, rlimit[1]))
 SEED = 18
 np.random.seed(SEED)
 random.seed(SEED)
-pytorch_lightning.seed_everything(SEED)
+pl.fabric.utilities.seed.seed_everything(SEED)
 
 
 # argparser
