@@ -1,4 +1,5 @@
 import lightning as pl
+import pytorch_lightning
 from lightning.pytorch.callbacks import ModelCheckpoint, LearningRateMonitor
 from lightning.pytorch.core import LightningDataModule
 import random
@@ -26,7 +27,6 @@ resource.setrlimit(resource.RLIMIT_NOFILE, (4096, rlimit[1]))
 SEED = 18
 np.random.seed(SEED)
 random.seed(SEED)
-pl.frabic.utilities.seed.seed_everything(SEED)
 pytorch_lightning.seed_everything(SEED)
 
 
