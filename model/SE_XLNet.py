@@ -34,8 +34,9 @@ class SEXLNet(LightningModule):
             config.dropout = 0.2
 
         self.pooler = SequenceSummary(config)
-        print(f"questo è il numero di classi: {int(self.hparams.num_classes)}")
-        #self.hparams.num_classes = int(self.hparams.num_classes)
+       
+        self.hparams.num_classes = int(self.hparams.num_classes)
+        print(f"questo è il numero di classi: {self.hparams.num_classes}")
         self.classifier = nn.Linear(config.d_model, self.hparams.num_classes)
 
         self.concept_store = torch.load(self.hparams.concept_store)
