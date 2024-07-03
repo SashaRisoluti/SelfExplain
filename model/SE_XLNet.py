@@ -24,6 +24,8 @@ class SEXLNet(LightningModule):
 
             config = AutoConfig.from_pretrained(self.hparams.model_name)
             self.model = AutoModel.from_pretrained(self.hparams.model_name)
+            print(config)
+            print(self.model)
 
         else:
             config = RobertaConfig()
