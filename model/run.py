@@ -1,5 +1,6 @@
 import lightning as pl
-from lightning.pytorch.callbacks import ModelCheckpoint, LearningRateMonitor
+from pl.pytorch.callbacks import ModelCheckpoint, LearningRateMonitor
+from pl.pytorch.core import LightningDataModule
 import random
 import numpy as np
 import logging
@@ -25,7 +26,7 @@ resource.setrlimit(resource.RLIMIT_NOFILE, (4096, rlimit[1]))
 SEED = 18
 np.random.seed(SEED)
 random.seed(SEED)
-pl.utilities.seed.seed_everything(SEED)
+pl.frabic.utilities.seed.seed_everything(SEED)
 pytorch_lightning.seed_everything(SEED)
 
 
@@ -41,7 +42,7 @@ parser.add_argument("--gamma", default=0.01, type=float, help="Gamma parameter")
 parser.add_argument("--lamda", default=0.01, type=float, help="Lamda Parameter")
 parser.add_argument("--topk", default=100, type=int,help="Topk GIL concepts")
 
-parser = pl.Trainer.add_argparse_args(parser)
+parser = LightningDataModule.add_argparse_args(parser)
 parser = SEXLNet.add_model_specific_args(parser)
 
 args = parser.parse_args()
