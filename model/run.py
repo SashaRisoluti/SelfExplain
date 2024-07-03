@@ -46,7 +46,7 @@ parser = SEXLNet.add_model_specific_args(parser)
 
 args = parser.parse_args()
 # print(args)
-args.num_gpus = len(str(args.gpus).split(","))
+args.num_gpus = len(str(args.num_gpus).split(","))
 
 
 logging.basicConfig(level=logging.INFO)
