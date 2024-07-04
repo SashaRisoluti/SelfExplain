@@ -1,6 +1,6 @@
 #!/bin/bash
 export TOKENIZERS_PARALLELISM=false
-python model/run.py \
+python model/run0.1.py \
     --num_gpus 1 \
     --batch_size 32 \
     --clip_grad 1.0 \
