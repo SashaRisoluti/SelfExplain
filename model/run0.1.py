@@ -4,7 +4,7 @@ from lightning.pytorch.core import LightningDataModule
 import random
 import numpy as np
 import logging
-from jsonargparse import ArgumentParser
+from jsonargparse import ArgumentParser, ActionConfigFile
 import resource
 from data import ClassificationData
 from SE_XLNet import SEXLNet
@@ -32,6 +32,7 @@ pl.fabric.utilities.seed.seed_everything(SEED)
 
 # argparser
 parser = ArgumentParser()
+parser.add_argument('--config', action=ActionConfigFile)  # To enable config file support
 parser.add_argument('--num_gpus', type=int, default=1)
 parser.add_argument('--batch_size', type=int, default=16)
 parser.add_argument('--clip_grad', type=float, default=1.0)
