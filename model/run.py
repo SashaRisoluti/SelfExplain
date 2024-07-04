@@ -50,7 +50,7 @@ parser.add_argument("--topk", default=100, type=int,help="Topk GIL concepts")
 #parser.add_argument('--lr', type=float, default=0.001)
 #parser.add_argument('--weight_decay', type=float, default=0.0001)
 #parser.add_argument('--warmup_prop', type=float, default=0.1)
-#parser.add_argument('--max_epochs', type=int, default=10)
+parser.add_argument('--max_epochs', type=int, default=10)
 #parser.add_argument('--gpus', type=int, default=1)
 #parser.add_argument('--accelerator', type=str, default='ddp')
 
