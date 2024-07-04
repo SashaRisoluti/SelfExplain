@@ -13,10 +13,11 @@ from SE_XLNet import SEXLNet
 def get_train_steps(dm):
   total_devices = args.num_gpus * 5 #args.num_nodes non è stato inserito il numero di nodi quindi metto 5 per vedere se il resto del codice funziona
   train_batches = len(dm.train_dataloader()) // total_devices
-  if args.accumulate_grad_batches is None:
+  """if args.accumulate_grad_batches is None:
     return (args.max_epochs * train_batches)
   else:
-   return args.max_epochs * train_batches // args.accumulate_grad_batches
+   return args.max_epochs * train_batches // args.accumulate_grad_batches"""
+  return (args.max_epochs * train_batches)
 
 
 
