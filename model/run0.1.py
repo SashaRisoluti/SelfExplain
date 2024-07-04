@@ -4,13 +4,13 @@ from lightning.pytorch.core import LightningDataModule
 import random
 import numpy as np
 import logging
-from argparse import ArgumentParser
+from jsonargparse import ArgumentParser
 import resource
 from data import ClassificationData
 from SE_XLNet import SEXLNet
 
 def get_train_steps(dm):
-  total_devices = args.num_gpus * 5 #args.num_nodes non è stato inserito il numero di nodi quindi metto 5 per vedere se il resto del codice funziona
+  total_devices = args.num_gpus * args.num_nodes #args.num_nodes non è stato inserito il numero di nodi quindi metto 5 per vedere se il resto del codice funziona
   train_batches = len(dm.train_dataloader()) // total_devices
   """if args.accumulate_grad_batches is None:
     return (args.max_epochs * train_batches)
@@ -50,6 +50,7 @@ parser.add_argument("--topk", default=100, type=int,help="Topk GIL concepts")
 #parser.add_argument('--weight_decay', type=float, default=0.0001)
 #parser.add_argument('--warmup_prop', type=float, default=0.1)
 parser.add_argument('--max_epochs', type=int, default=10)
+parser.add_argument('--num_nodes', type=int, default=8)
 #parser.add_argument('--gpus', type=int, default=1)
 #parser.add_argument('--accelerator', type=str, default='ddp')
 
@@ -57,8 +58,8 @@ parser.add_argument('--max_epochs', type=int, default=10)
 parser = SEXLNet.add_model_specific_args(parser)
 
 args = parser.parse_args()
-# print(args)
-args.num_gpus = len(str(args.num_gpus).split(","))
+print(args)
+#args.num_gpus = len(str(args.num_gpus).split(","))
 
 
 logging.basicConfig(level=logging.INFO)
@@ -83,6 +84,6 @@ checkpoint_callback = ModelCheckpoint(
     mode='max'
 )
 
-trainer = pl.Trainer.from_argparse_args(args, callbacks=[checkpoint_callback], val_check_interval=0.5, gradient_clip_val=args.clip_grad, track_grad_norm=2)
+trainer = pl.Trainer(device=args.num_gpus, accelerator='gpu', strategy='ddp', max_epochs=args.max_epochs, callbacks=[checkpoint_callback], val_check_interval=0.5, gradient_clip_val=args.clip_grad, num_nodes=args.num_nodes, enable_model_summary=True)
 trainer.fit(model, dm)
 # trainer.test()
