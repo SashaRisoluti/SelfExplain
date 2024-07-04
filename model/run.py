@@ -1,5 +1,4 @@
 import lightning as pl
-import pytorch_lightning
 from lightning.pytorch.callbacks import ModelCheckpoint, LearningRateMonitor
 from lightning.pytorch.core import LightningDataModule
 import random
