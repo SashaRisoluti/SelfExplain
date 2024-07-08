@@ -85,6 +85,6 @@ checkpoint_callback = ModelCheckpoint(
     mode='max'
 )
 
-trainer = pl.Trainer(device=args.num_gpus, accelerator='gpu', strategy='ddp', max_epochs=args.max_epochs, callbacks=[checkpoint_callback, lr_monitor], val_check_interval=0.5, gradient_clip_val=args.clip_grad, num_nodes=args.num_nodes, enable_model_summary=True)
+trainer = pl.Trainer(devices=args.num_gpus, accelerator='gpu', strategy='ddp', max_epochs=args.max_epochs, callbacks=[checkpoint_callback, lr_monitor], val_check_interval=0.5, gradient_clip_val=args.clip_grad, num_nodes=args.num_nodes, enable_model_summary=True)
 trainer.fit(model, dm)
 # trainer.test()
