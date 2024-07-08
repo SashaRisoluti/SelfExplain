@@ -1,4 +1,4 @@
-from argparse import ArgumentParser
+from jsonargparse import ArgumentParser
 
 import torch
 import torch.nn as nn
