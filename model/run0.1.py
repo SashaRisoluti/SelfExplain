@@ -8,6 +8,7 @@ from jsonargparse import ArgumentParser, ActionConfigFile
 import resource
 from data import ClassificationData
 from SE_XLNet import SEXLNet
+from lightning.fabric.utilities.seed import seed_everything
 
 def get_train_steps(dm):
   total_devices = args.num_gpus * args.num_nodes #args.num_nodes non è stato inserito il numero di nodi quindi metto 5 per vedere se il resto del codice funziona
@@ -27,7 +28,7 @@ resource.setrlimit(resource.RLIMIT_NOFILE, (4096, rlimit[1]))
 SEED = 18
 np.random.seed(SEED)
 random.seed(SEED)
-pl.fabric.utilities.seed.seed_everything(SEED)
+seed_everything(SEED)
 
 
 # argparser
@@ -67,12 +68,13 @@ logging.basicConfig(level=logging.INFO)
 
 # Step 1: Init Data
 logging.info("Loading the data module")
-dm = ClassificationData(basedir=args.dataset_basedir, tokenizer_name=args.model_name, batch_size=args.batch_size)
+dm = ClassificationData(basedir=args.dataset_basedir, tokenizer_name=args.model_name, batch_size=args.batch_size, num_workers=4)
 
 # Step 2: Init Model
 logging.info("Initializing the model")
 model = SEXLNet(hparams=args)
 model.hparams.warmup_steps = int(get_train_steps(dm) * model.hparams.warmup_prop)
+
 lr_monitor = LearningRateMonitor(logging_interval='step')
 
 # Step 3: Start
@@ -85,6 +87,10 @@ checkpoint_callback = ModelCheckpoint(
     mode='max'
 )
 
-trainer = pl.Trainer(devices=args.num_gpus, accelerator='gpu', strategy='ddp', max_epochs=args.max_epochs, callbacks=[checkpoint_callback, lr_monitor], val_check_interval=0.5, gradient_clip_val=args.clip_grad, num_nodes=args.num_nodes, enable_model_summary=True)
+trainer = pl.Trainer(devices=args.num_gpus, accelerator='gpu', strategy='ddp',\
+                     max_epochs=args.max_epochs, callbacks=[checkpoint_callback,\
+                     lr_monitor], val_check_interval=0.5, gradient_clip_val=args.clip_grad,\
+                     num_nodes=args.num_nodes, enable_model_summary=True)
+logging.info("Tsarting the training")
 trainer.fit(model, dm)
 # trainer.test()
